@@ -4,6 +4,8 @@
 /**
  * print_to_98 - prints all number to 98
  * @n: the starting number
+ *
+ * Return: void
  */
 void print_to_98(int n)
 {
