@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_to_98 - prints all numbers n to 98
@@ -9,7 +9,7 @@
  *
  * Return: void
  */
-void print_to_98(int n);
+void print_to_98(int n)
 {
 	if (n >= 98)
 	{
