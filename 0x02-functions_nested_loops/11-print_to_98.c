@@ -4,6 +4,10 @@
 /**
  * print_to_98 - prints all numbers to 98
  * @n: the starting number
+ *
+ * Description: prints all natural number from n - 98
+ *
+ * Return: void
  */
 void print_to_98(int n)
 {
