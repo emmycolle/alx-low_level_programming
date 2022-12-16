@@ -21,7 +21,3 @@ int main(void)
 
 	return (0);
 }
-
-/**
- * while (i < 10)
- */
