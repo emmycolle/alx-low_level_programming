@@ -2,7 +2,6 @@
 
 /**
  * main - causes an infinite loop
- * Reason - there is an error writting putchar
  * Return: 0
  */
 int main(void)
