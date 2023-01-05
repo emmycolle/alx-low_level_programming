@@ -1,5 +1,5 @@
-#include "main.h" 
-#include <stdio.h>
+#ifndef "main.h"
+#define "main.h"
 
 void _puts_recursion(char *s);
 void _print_rev_recursion(char *s);
