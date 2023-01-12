@@ -1,66 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
-int change(int cents);
-/**
- * main - Entry Point
- * @argc: arguments
- * @argv: array pointing to arguments
- * Return: 0
- */
-int main(int argc, char *argv[])
-{
-	if (argc != 2)
-	{
-		printf("%s\n", "Error");
-		return (1);
-	}
-	else if (argc < 0)
-	{
-		return (0);
-	}
 
-	printf("%d\n", change(atoi(argv[1])));
-	return (0);
+/**
+ * is_number - checks to see if input is a number
+ * @s: input to check for numberhood
+ * Return: 1 if it is a number, 0 if not
+ */
+int is_number(char *s)
+{
+	int i;
+
+	i = 0;
+	while (*(s + i) != '\0')
+	{
+		if (*(s + i) >= '0' && *(s + i) <= '9')
+		{
+			i++;
+		}
+		else
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
 
 /**
- * change - get change
- * @cents: amount of coins from main function
- * Return: change
+ * main - prints the sum of positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ * Return: (0)
  */
-int change(int cents)
+int main(int argc, char *argv[])
 {
-	int q = 25, d = 10, n = 5, t = 2, p = 1;
-	int coins;
+	int i, sum, is_num;
 
-	while (cents > 0)
+	sum = 0;
+	if (argc == 1)
 	{
-		while (cents >= q)
-		{
-			cents -= q;
-			coins++;
-		}
-		while (cents >= d)
-		{
-			cents -= d;
-			coins++;
-		}
-		while (cents >= n)
-		{
-			cents -= n;
-			coins++;
-		}
-		while (cents >= t)
-		{
-			cents -= t;
-			coins++;
-		}
-		while (cents >= p)
-		{
-			cents -= p;
-			coins++;
-		}
+		printf("0\n");
 	}
-	return (coins);
+	else if (argc > 1)
+	{
+		i = 1;
+		while (i < argc)
+		{
+			is_num = is_number(argv[i]);
+			if (is_num == 1)
+			{
+				sum += atoi(argv[i]);
+			}
+			else
+			{
+				printf("Error\n");
+				return (1);
+			}
+			i++;
+		}
+		printf("%d\n", sum);
+	}
+	return (0);
 }
