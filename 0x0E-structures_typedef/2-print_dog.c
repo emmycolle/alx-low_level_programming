@@ -1,6 +1,6 @@
 #include "dog.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * print_dog - Write a function that prints a struct dog
@@ -19,6 +19,8 @@ void print_dog(struct dog *d)
 		d->owner = "(nil)";
 
 	printf("Name: %s\n", d->name);
-	printf("Age: %.6f\n", d->age);
+	printf("Age: %3.5f\n", d->age);
 	printf("Owner: %s\n", d->owner);
+
+	return (0);
 }
