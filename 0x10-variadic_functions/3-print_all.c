@@ -1,92 +1,52 @@
 #include "variadic_functions.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
- * print_char - print char
- * @args: list of arguments
- */
-
-void print_char(va_list args)
-{
-	printf("%c", va_arg(args, int));
-}
-
-/**
- * print_int - print int
- * @args: list of arguments
- */
-
-void print_int(va_list args)
-{
-	printf("%d", va_arg(args, int));
-}
-
-/**
- * print_float - print float
- * @args: list of arguments
- */
-
-void print_float(va_list args)
-{
-	printf("%f", va_arg(args, double));
-}
-
-/**
- * print_string - print string
- * @args: list of arguments
- */
-
-void print_string(va_list args)
-{
-	char *s = va_arg(args, char *);
-
-	if (s == NULL)
-	{
-		printf("(nil)");
-		return;
-	}
-	printf("%s", s);
-}
-
-/**
- * print_all - prints anything*
- * @format: list of types of arguments
+ * print_all - Entry Point
+ * c = char, i = int, f = float, s = char * (if null print (nil))
+ * @format: list of arg types
+ * Return: 0
  */
 
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	int i, j;
-	char *s1 = "";
-	char *s2 = ", ";
+	va_list valist;
+	int n = 0, i = 0;
+	char *sep = ", ";
+	char *str;
 
-	op_t ops[] = {
-		{'c', print_char},
-		{'i', print_int},
-		{'f', print_float},
-		{'s', print_string},
-		{'\0', NULL}
-	};
+	va_start(valist, format);
 
-	va_start(args, format);
-	i = 0;
-	while (format != NULL && format[i] != '\0')
-	{
-		j = 0;
-		while (ops[j].c != '\0')
-		{
-			if (ops[j].c == format[i])
-			{
-				printf("%s", s1);
-				ops[j].f(args);
-				s1 = s2;
-			}
-			j++;
-		}
+	while (format && format[i])
 		i++;
+
+	while (format && format[n])
+	{
+		if (n  == (i - 1))
+		{
+			sep = "";
+		}
+		switch (format[n])
+		{
+			case 'c':
+				printf("%c%s", va_arg(valist, int), sep);
+				break;
+			case 'i':
+				printf("%d%s", va_arg(valist, int), sep);
+				break;
+			case 'f':
+				printf("%f%s", va_arg(valist, double), sep);
+				break;
+			case 's':
+				str = va_arg(valist, char *);
+				if (str == NULL)
+					str = "(nil)";
+				printf("%s%s", str, sep);
+				break;
+		}
+		n++;
 	}
 	printf("\n");
-	va_end(args);
+	va_end(valist);
 }
